@@ -1,34 +1,36 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SamplePage3 extends StatelessWidget {
+class SamplePage5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sample3 actions'),
+        title: Text('Sample5 elevation, color, shape'),
       ),
-      body: CupertinoAlertDialog(
-        title: Text("Accept?"),
-        content: Text('Do you accespt?'),
+      body: AlertDialog(
+        title: Text('Accept?'),
+        content: Text('Do you accept?'),
         actions: <Widget>[
-          CupertinoDialogAction(
-            child: Text("No"),
+          FlatButton(
+            child: Text('No'),
             onPressed: () {
               Scaffold.of(context).showSnackBar(SnackBar(
-                content: Text("No"),
+                content: Text('No'),
               ));
             },
           ),
-          CupertinoDialogAction(
+          FlatButton(
             child: Text('Yes'),
             onPressed: () {
               Scaffold.of(context).showSnackBar(SnackBar(
                 content: Text('Yes'),
               ));
             },
-          )
+          ),
         ],
+        elevation: 24,
+        backgroundColor: Colors.amber,
+        shape: StadiumBorder(),
       ),
     );
   }
