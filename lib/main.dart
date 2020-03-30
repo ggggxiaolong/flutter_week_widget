@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_week_widget/align/index.dart';
 import 'package:flutter_week_widget/dialog/index.dart';
 
 import 'absorb_pointer/index.dart';
@@ -6,7 +7,7 @@ import 'nested_navigators/index.dart';
 
 void main() => runApp(MyApp());
 
-enum ViewItem { ABSORB_POINT, NESTED_NAVIGATOR, ALERT_DIALOG }
+enum ViewItem { ABSORB_POINT, NESTED_NAVIGATOR, ALERT_DIALOG, ALIGN }
 
 extension ViewItemExtension on ViewItem {
   static String _value(ViewItem item) {
@@ -17,6 +18,8 @@ extension ViewItemExtension on ViewItem {
         return "/nested_navigator";
       case ViewItem.ALERT_DIALOG:
         return "/alert_dialog";
+      case ViewItem.ALIGN:
+        return "/align";
     }
     return "";
   }
@@ -35,6 +38,7 @@ class MyApp extends StatelessWidget {
         ViewItem.NESTED_NAVIGATOR.value: (BuildContext context) =>
             NestedNavigators(),
         ViewItem.ALERT_DIALOG.value: (BuildContext context) => DialogDemo(),
+        ViewItem.ALIGN.value: (BuildContext context) => AlignDemo(),
       },
     );
   }
@@ -53,6 +57,7 @@ class HomePage extends StatelessWidget {
             _buildItem(
                 context, "NestedNavigator", ViewItem.NESTED_NAVIGATOR.value),
             _buildItem(context, "AlertDialog", ViewItem.ALERT_DIALOG.value),
+            _buildItem(context, "Align", ViewItem.ALIGN.value),
           ],
         ));
   }
