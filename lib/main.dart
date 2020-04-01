@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_week_widget/align/index.dart';
 import 'package:flutter_week_widget/animate_builder/index.dart';
+import 'package:flutter_week_widget/animated_corss_fade/index.dart';
 import 'package:flutter_week_widget/dialog/index.dart';
 
 import 'absorb_pointer/index.dart';
@@ -15,7 +16,8 @@ enum ViewItem {
   ALERT_DIALOG,
   ALIGN,
   ANIMATE_BUILDER,
-  ANIMATED_CONTAINER
+  ANIMATED_CONTAINER,
+  ANIMATED_CROSS_FADE,
 }
 
 extension ViewItemExtension on ViewItem {
@@ -33,6 +35,8 @@ extension ViewItemExtension on ViewItem {
         return "/animate_builder";
       case ViewItem.ANIMATED_CONTAINER:
         return "/animate_container";
+        case ViewItem.ANIMATED_CROSS_FADE:
+        return "/animate_cross_fade";
     }
     return "";
   }
@@ -43,7 +47,7 @@ extension ViewItemExtension on ViewItem {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       initialRoute: "/",
       routes: <String, WidgetBuilder>{
         "/": (BuildContext context) => new HomePage(),
@@ -51,10 +55,13 @@ class MyApp extends StatelessWidget {
         ViewItem.NESTED_NAVIGATOR.value: (BuildContext context) =>
             NestedNavigators(),
         ViewItem.ALERT_DIALOG.value: (BuildContext context) => DialogDemo(),
+        ViewItem.ALIGN.value: (BuildContext context) => AlignDemo(),
         ViewItem.ANIMATE_BUILDER.value: (BuildContext context) =>
             AnimateBuilderDemo(),
         ViewItem.ANIMATED_CONTAINER.value: (BuildContext context) =>
             AnimatedContainerDemo(),
+        ViewItem.ANIMATED_CROSS_FADE.value: (BuildContext context) =>
+            AnimatedCrossFadeDemo(),
       },
     );
   }
@@ -63,7 +70,7 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: const Text("Flutter week widget"),
         ),
@@ -78,6 +85,8 @@ class HomePage extends StatelessWidget {
                 context, "AnimatedBuilder", ViewItem.ANIMATE_BUILDER.value),
             _buildItem(
                 context, "AnimatedContainer", ViewItem.ANIMATED_CONTAINER.value),
+            _buildItem(
+                context, "AnimatedCrossFade", ViewItem.ANIMATED_CROSS_FADE.value),
           ],
         ));
   }
