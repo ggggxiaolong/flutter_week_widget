@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_week_widget/align/index.dart';
 import 'package:flutter_week_widget/animate_builder/index.dart';
+import 'package:flutter_week_widget/animatedIcon/index.dart';
 import 'package:flutter_week_widget/animated_corss_fade/index.dart';
 import 'package:flutter_week_widget/dialog/index.dart';
 
@@ -18,6 +19,7 @@ enum ViewItem {
   ANIMATE_BUILDER,
   ANIMATED_CONTAINER,
   ANIMATED_CROSS_FADE,
+  ANIMATED_ICONS,
 }
 
 extension ViewItemExtension on ViewItem {
@@ -35,8 +37,10 @@ extension ViewItemExtension on ViewItem {
         return "/animate_builder";
       case ViewItem.ANIMATED_CONTAINER:
         return "/animate_container";
-        case ViewItem.ANIMATED_CROSS_FADE:
+      case ViewItem.ANIMATED_CROSS_FADE:
         return "/animate_cross_fade";
+      case ViewItem.ANIMATED_ICONS:
+        return "/animate_icons";
     }
     return "";
   }
@@ -62,6 +66,8 @@ class MyApp extends StatelessWidget {
             AnimatedContainerDemo(),
         ViewItem.ANIMATED_CROSS_FADE.value: (BuildContext context) =>
             AnimatedCrossFadeDemo(),
+        ViewItem.ANIMATED_ICONS.value: (BuildContext context) =>
+            AnimatedIconDemo(),
       },
     );
   }
@@ -83,10 +89,11 @@ class HomePage extends StatelessWidget {
             _buildItem(context, "Align", ViewItem.ALIGN.value),
             _buildItem(
                 context, "AnimatedBuilder", ViewItem.ANIMATE_BUILDER.value),
-            _buildItem(
-                context, "AnimatedContainer", ViewItem.ANIMATED_CONTAINER.value),
-            _buildItem(
-                context, "AnimatedCrossFade", ViewItem.ANIMATED_CROSS_FADE.value),
+            _buildItem(context, "AnimatedContainer",
+                ViewItem.ANIMATED_CONTAINER.value),
+            _buildItem(context, "AnimatedCrossFade",
+                ViewItem.ANIMATED_CROSS_FADE.value),
+            _buildItem(context, "AnimatedIcons", ViewItem.ANIMATED_ICONS.value),
           ],
         ));
   }
