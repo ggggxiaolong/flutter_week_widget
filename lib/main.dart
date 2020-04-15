@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_week_widget/align/index.dart';
 import 'package:flutter_week_widget/animate_builder/index.dart';
 import 'package:flutter_week_widget/animated_corss_fade/index.dart';
@@ -6,9 +7,11 @@ import 'package:flutter_week_widget/animated_icon/index.dart';
 import 'package:flutter_week_widget/animated_list/index.dart';
 import 'package:flutter_week_widget/animated_opacity/index.dart';
 import 'package:flutter_week_widget/dialog/index.dart';
+import 'package:flutter_week_widget/other/i18n/index.dart';
 
 import 'absorb_pointer/index.dart';
 import 'animated_container/index.dart';
+import 'generated/l10n.dart';
 import 'nested_navigators/index.dart';
 
 void main() => runApp(MyApp());
@@ -24,6 +27,7 @@ enum ViewItem {
   ANIMATED_ICONS,
   ANIMATED_LIST,
   ANIMATED_OPACITY,
+  I18N,
 }
 
 extension ViewItemExtension on ViewItem {
@@ -49,6 +53,8 @@ extension ViewItemExtension on ViewItem {
         return "/animate_list";
       case ViewItem.ANIMATED_OPACITY:
         return "/animate_opacity";
+      case ViewItem.I18N:
+        return "/i18n";
     }
     return "";
   }
@@ -56,13 +62,24 @@ extension ViewItemExtension on ViewItem {
   String get value => _value(this);
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        S.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
       initialRoute: "/",
       routes: <String, WidgetBuilder>{
-        "/": (BuildContext context) => new HomePage(),
+        "/": (BuildContext context) => HomePage(),
         ViewItem.ABSORB_POINT.value: (BuildContext context) => AbsorbPointApp(),
         ViewItem.NESTED_NAVIGATOR.value: (BuildContext context) =>
             NestedNavigators(),
@@ -80,8 +97,11 @@ class MyApp extends StatelessWidget {
             AnimatedListDemo(),
         ViewItem.ANIMATED_OPACITY.value: (BuildContext context) =>
             AnimatedOpacityDemo(),
+        ViewItem.I18N.value: (BuildContext context) =>
+            I18NDemo(),
       },
     );
+    ;
   }
 }
 
@@ -107,8 +127,8 @@ class HomePage extends StatelessWidget {
                 ViewItem.ANIMATED_CROSS_FADE.value),
             _buildItem(context, "AnimatedIcons", ViewItem.ANIMATED_ICONS.value),
             _buildItem(context, "AnimatedList", ViewItem.ANIMATED_LIST.value),
-            _buildItem(
-                context, "AnimatedOpacity", ViewItem.ANIMATED_OPACITY.value),
+            _buildItem(context, "AnimatedOpacity", ViewItem.ANIMATED_OPACITY.value),
+            _buildItem(context, "I18N", ViewItem.I18N.value),
           ],
         ));
   }
@@ -117,10 +137,8 @@ class HomePage extends StatelessWidget {
     return Card(
         child: ListTile(
       title: Text(title),
-      onTap: () {
-        Navigator.of(context).pushNamed(router);
-      },
       trailing: Icon(Icons.chevron_right),
+      onTap: () => Navigator.of(context).pushNamed(router),
     ));
   }
 }

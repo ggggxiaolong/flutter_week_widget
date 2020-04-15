@@ -1,0 +1,6 @@
+{
+  "pageHomeListTitle": "一些本地化的语句:",
+  "pageHomeSamplePlaceholder": "你好 {name}",
+  "pageHomeSamplePlaceholdersOrdered": "我的名字是 {lastName}, {firstName} {lastName}",
+  "pageHomeSamplePlural": "{howMany, plural, one{你有1条信息} other{你有{howMany}条信息}}"
+}
