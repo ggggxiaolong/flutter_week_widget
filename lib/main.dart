@@ -8,6 +8,7 @@ import 'package:flutter_week_widget/animated_list/index.dart';
 import 'package:flutter_week_widget/animated_opacity/index.dart';
 import 'package:flutter_week_widget/dialog/index.dart';
 import 'package:flutter_week_widget/other/i18n/index.dart';
+import 'package:flutter_week_widget/other/provider/index.dart';
 
 import 'absorb_pointer/index.dart';
 import 'animated_container/index.dart';
@@ -28,6 +29,7 @@ enum ViewItem {
   ANIMATED_LIST,
   ANIMATED_OPACITY,
   I18N,
+  PROVIDER,
 }
 
 extension ViewItemExtension on ViewItem {
@@ -55,6 +57,8 @@ extension ViewItemExtension on ViewItem {
         return "/animate_opacity";
       case ViewItem.I18N:
         return "/i18n";
+      case ViewItem.PROVIDER:
+        return "/provider";
     }
     return "";
   }
@@ -97,8 +101,8 @@ class _MyAppState extends State<MyApp> {
             AnimatedListDemo(),
         ViewItem.ANIMATED_OPACITY.value: (BuildContext context) =>
             AnimatedOpacityDemo(),
-        ViewItem.I18N.value: (BuildContext context) =>
-            I18NDemo(),
+        ViewItem.I18N.value: (BuildContext context) => I18NDemo(),
+        ViewItem.PROVIDER.value: (BuildContext context) => ProviderDemo(),
       },
     );
     ;
@@ -129,6 +133,7 @@ class HomePage extends StatelessWidget {
             _buildItem(context, "AnimatedList", ViewItem.ANIMATED_LIST.value),
             _buildItem(context, "AnimatedOpacity", ViewItem.ANIMATED_OPACITY.value),
             _buildItem(context, "I18N", ViewItem.I18N.value),
+            _buildItem(context, "Provider", ViewItem.PROVIDER.value),
           ],
         ));
   }
