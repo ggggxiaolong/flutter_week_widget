@@ -7,8 +7,10 @@ import 'package:flutter_week_widget/animated_icon/index.dart';
 import 'package:flutter_week_widget/animated_list/index.dart';
 import 'package:flutter_week_widget/animated_opacity/index.dart';
 import 'package:flutter_week_widget/dialog/index.dart';
+import 'package:flutter_week_widget/futuer_builder/index.dart';
 import 'package:flutter_week_widget/other/i18n/index.dart';
 import 'package:flutter_week_widget/other/provider/index.dart';
+import 'package:flutter_week_widget/other/pull_refresh/index.dart';
 
 import 'absorb_pointer/index.dart';
 import 'animated_container/index.dart';
@@ -30,6 +32,8 @@ enum ViewItem {
   ANIMATED_OPACITY,
   I18N,
   PROVIDER,
+  FUTURE_BUILDER,
+  PULL_REFRESH,
 }
 
 extension ViewItemExtension on ViewItem {
@@ -51,14 +55,12 @@ extension ViewItemExtension on ViewItem {
         return "/animate_cross_fade";
       case ViewItem.ANIMATED_ICONS:
         return "/animate_icons";
-      case ViewItem.ANIMATED_LIST:
-        return "/animate_list";
-      case ViewItem.ANIMATED_OPACITY:
-        return "/animate_opacity";
-      case ViewItem.I18N:
-        return "/i18n";
-      case ViewItem.PROVIDER:
-        return "/provider";
+      case ViewItem.ANIMATED_LIST: return "/animate_list";
+      case ViewItem.ANIMATED_OPACITY: return "/animate_opacity";
+      case ViewItem.I18N: return "/i18n";
+      case ViewItem.PROVIDER: return "/provider";
+      case ViewItem.FUTURE_BUILDER: return "/future_builder";
+      case ViewItem.PULL_REFRESH: return "/pull_refresh";
     }
     return "";
   }
@@ -103,9 +105,10 @@ class _MyAppState extends State<MyApp> {
             AnimatedOpacityDemo(),
         ViewItem.I18N.value: (BuildContext context) => I18NDemo(),
         ViewItem.PROVIDER.value: (BuildContext context) => ProviderDemo(),
+        ViewItem.FUTURE_BUILDER.value: (BuildContext context) => FutureBuilderDemo(),
+        ViewItem.PULL_REFRESH.value: (BuildContext context) => PullRefreshDemo(),
       },
     );
-    ;
   }
 }
 
@@ -134,6 +137,8 @@ class HomePage extends StatelessWidget {
             _buildItem(context, "AnimatedOpacity", ViewItem.ANIMATED_OPACITY.value),
             _buildItem(context, "I18N", ViewItem.I18N.value),
             _buildItem(context, "Provider", ViewItem.PROVIDER.value),
+            _buildItem(context, "FutureBuilder", ViewItem.FUTURE_BUILDER.value),
+            _buildItem(context, "PullRefresh", ViewItem.PULL_REFRESH.value),
           ],
         ));
   }

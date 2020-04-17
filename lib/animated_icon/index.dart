@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class AnimatedIconDemo extends StatefulWidget{
@@ -17,12 +15,13 @@ class _AnimatedIconState extends State<AnimatedIconDemo> with SingleTickerProvid
       duration: Duration(seconds: 1),
       vsync: this,
     )..addStatusListener((status) async {
+      if (!mounted) return;
       if(status == AnimationStatus.completed){
         await Future.delayed(Duration(milliseconds: 500));
-        _controller.reverse();
+        if(mounted) _controller.reverse();
       } else if (status == AnimationStatus.dismissed){
         await Future.delayed(Duration(seconds: 1));
-        _controller.forward();
+        if(mounted) _controller.forward();
       }
     });
     _controller.forward();

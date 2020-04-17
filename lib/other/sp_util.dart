@@ -21,7 +21,7 @@ class SPUtil {
     return _sp.getString(key) ?? defValue;
   }
 
-  static String putString(String key, String value){
+  static void putString(String key, String value){
     _sp.setString(key, value);
   }
 

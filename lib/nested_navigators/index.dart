@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_week_widget/nested_navigators/bottom_navigation.dart';
 import 'package:flutter_week_widget/nested_navigators/tab_navigator.dart';
