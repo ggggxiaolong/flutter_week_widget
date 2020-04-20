@@ -6,6 +6,7 @@ import 'package:flutter_week_widget/animated_corss_fade/index.dart';
 import 'package:flutter_week_widget/animated_icon/index.dart';
 import 'package:flutter_week_widget/animated_list/index.dart';
 import 'package:flutter_week_widget/animated_opacity/index.dart';
+import 'package:flutter_week_widget/animated_padding/index.dart';
 import 'package:flutter_week_widget/dialog/index.dart';
 import 'package:flutter_week_widget/futuer_builder/index.dart';
 import 'package:flutter_week_widget/other/i18n/index.dart';
@@ -34,6 +35,7 @@ enum ViewItem {
   PROVIDER,
   FUTURE_BUILDER,
   PULL_REFRESH,
+  ANIMATED_PADDING,
 }
 
 extension ViewItemExtension on ViewItem {
@@ -61,6 +63,7 @@ extension ViewItemExtension on ViewItem {
       case ViewItem.PROVIDER: return "/provider";
       case ViewItem.FUTURE_BUILDER: return "/future_builder";
       case ViewItem.PULL_REFRESH: return "/pull_refresh";
+      case ViewItem.ANIMATED_PADDING: return "/animated_padding";
     }
     return "";
   }
@@ -107,6 +110,7 @@ class _MyAppState extends State<MyApp> {
         ViewItem.PROVIDER.value: (BuildContext context) => ProviderDemo(),
         ViewItem.FUTURE_BUILDER.value: (BuildContext context) => FutureBuilderDemo(),
         ViewItem.PULL_REFRESH.value: (BuildContext context) => PullRefreshDemo(),
+        ViewItem.ANIMATED_PADDING.value: (BuildContext context) => AnimatedPaddingDemo(),
       },
     );
   }
@@ -139,6 +143,7 @@ class HomePage extends StatelessWidget {
             _buildItem(context, "Provider", ViewItem.PROVIDER.value),
             _buildItem(context, "FutureBuilder", ViewItem.FUTURE_BUILDER.value),
             _buildItem(context, "PullRefresh", ViewItem.PULL_REFRESH.value),
+            _buildItem(context, "AnimatedPadding", ViewItem.ANIMATED_PADDING.value),
           ],
         ));
   }
